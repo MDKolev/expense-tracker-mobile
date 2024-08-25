@@ -66,8 +66,8 @@ class _LoginState extends State<Login> {
                   color: Colors.white,
                   decoration: TextDecoration.underline,
                 )),
-                alignment: Alignment.centerLeft,
-                width: 270,
+            alignment: Alignment.centerLeft,
+            width: 270,
           ),
           SizedBox(
             height: 100,

@@ -2,6 +2,8 @@
 
 import 'dart:ui';
 
+import 'package:expense_tracker_mobile/screens/login.dart';
+import 'package:expense_tracker_mobile/screens/register.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,6 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool showLogin = true;
+
   @override
   Widget build(BuildContext context) {
     final imageURL = 'lib/assets/forest_tower.png';
@@ -47,56 +51,83 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              height: 50,
-                              width: 130,
-                              decoration: BoxDecoration(
-                                color: Colors.blue[900],
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(12),
-                                    bottomLeft: Radius.circular(12)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    spreadRadius: 7,
-                                    blurRadius: 7,
-                                    offset: Offset(3, 0),
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  showLogin = true;
+                                });
+                              },
+                              child: Container(
+                                height: 50,
+                                width: 130,
+                                decoration: BoxDecoration(
+                                  color: showLogin
+                                      ? Colors.blue[900]
+                                      : Colors.blue[700],
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(12),
+                                      bottomLeft: Radius.circular(12)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: showLogin
+                                          ? Colors.grey
+                                          : Colors.transparent,
+                                      spreadRadius: 7,
+                                      blurRadius: 7,
+                                      offset: Offset(3, 0),
+                                    ),
+                                  ],
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Login",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: showLogin
+                                            ? FontWeight.bold
+                                            : FontWeight.normal),
                                   ),
                                 ),
                               ),
                             ),
-                            Container(
-                              height: 50,
-                              width: 130,
-                              decoration: BoxDecoration(
-                                color: Colors.blue[900],
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(12),
-                                    bottomRight: Radius.circular(12)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    spreadRadius: 7,
-                                    blurRadius: 7,
-                                    offset: Offset(3, 0),
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Register",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  showLogin = false;
+                                });
+                              },
+                              child: Container(
+                                height: 50,
+                                width: 130,
+                                decoration: BoxDecoration(
+                                  color: !showLogin
+                                      ? Colors.blue[900]
+                                      : Colors.blue[700],
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(12),
+                                      bottomRight: Radius.circular(12)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: !showLogin
+                                          ? Colors.grey
+                                          : Colors.transparent,
+                                      spreadRadius: 7,
+                                      blurRadius: 7,
+                                      offset: Offset(3, 0),
+                                    ),
+                                  ],
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Register",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: !showLogin
+                                          ? FontWeight.bold
+                                          : FontWeight.normal,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -104,6 +135,7 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         SizedBox(height: 50),
+                        showLogin ? Login() : Register()
                       ],
                     ),
                   ),
