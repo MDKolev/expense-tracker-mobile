@@ -1,4 +1,5 @@
 import 'package:expense_tracker_mobile/screens/custom_textfield.dart';
+import 'package:expense_tracker_mobile/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -63,19 +64,24 @@ class _RegisterState extends State<Register> {
           SizedBox(
             height: 120,
           ),
-          Container(
-            height: 50,
-            width: 150,
-            decoration: BoxDecoration(
-                color: Colors.blue[900],
-                borderRadius: BorderRadius.all(Radius.circular(12))),
-            child: Center(
-              child: Text(
-                "Register Now",
-                style: TextStyle(color: Colors.white, fontSize: 20),
+          ElevatedButton(
+            onPressed: () {
+              AuthService.register(
+                  email: emailController.text, password: passController.text);
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue[900],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12))
               ),
+              minimumSize: Size(150, 50)
             ),
-          ),
+            child: Text("Register Now", 
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20
+            ),)
+          )
         ],
       ),
     );
